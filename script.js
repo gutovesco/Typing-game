@@ -1,4 +1,12 @@
-const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random'
+const RANDOM_QUOTE_API_URL = ("https://andruxnet-random-famous-quotes.p.rapidapi.com/?count=10&cat=movies", {
+	"method": "POST",
+	"headers": {
+		"x-rapidapi-host": "andruxnet-random-famous-quotes.p.rapidapi.com",
+		"x-rapidapi-key": "SIGN-UP-FOR-KEY",
+		"content-type": "application/x-www-form-urlencoded"
+	},
+	"body": {}
+})
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
 const timerElement = document.getElementById('timer')
