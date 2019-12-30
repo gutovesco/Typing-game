@@ -1,12 +1,4 @@
-const RANDOM_QUOTE_API_URL = ("https://andruxnet-random-famous-quotes.p.rapidapi.com/?count=10&cat=movies", {
-	"method": "POST",
-	"headers": {
-		"x-rapidapi-host": "andruxnet-random-famous-quotes.p.rapidapi.com",
-		"x-rapidapi-key": "SIGN-UP-FOR-KEY",
-		"content-type": "application/x-www-form-urlencoded"
-	},
-	"body": {}
-})
+const RANDOM_QUOTE_API_URL = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random'
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
 const timerElement = document.getElementById('timer')
@@ -14,8 +6,8 @@ const timerElement = document.getElementById('timer')
 quoteInputElement.addEventListener('input', () => {
     const arrayQuote = quoteDisplayElement.querySelectorAll('span')
     const arrayValue = quoteInputElement.split('')
-    const correctInput = true
-    arrayQuote.forEach((character,index) => {
+    let correctInput = true
+    arrayQuote.forEach((characterSpan,index) => {
         const character = arrayValue[index]
         if(character == null){
         characterSpan.classList.remove('correct')
@@ -36,13 +28,13 @@ quoteInputElement.addEventListener('input', () => {
 })
 
 function getRandomQuote(){
-    fetch(RANDOM_QUOTE_API_URL)
+    return fetch(RANDOM_QUOTE_API_URL)
     .then(response => response.json())
     .then(data => data.content)
 }
-function renderNewQuote(){
-    const quote = await getNextQuote()
-    quoteDisplayElement = quote
+async function renderNewQuote(){
+    const quote = await getRandomQuote()
+    quoteDisplayElement.innerHTML = ''
     quote.split('').forEach(character => {
         const characterSpan = document.createElement('span')
         characterSpan.innerText = character
